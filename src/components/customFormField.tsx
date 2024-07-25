@@ -1,4 +1,3 @@
-import { FormFieldType } from "@/app/(auth)/login/page";
 import { Button } from "@/components/ui/button";
 import {
 	Form,
@@ -13,10 +12,13 @@ import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import { Control } from "react-hook-form";
 import { Textarea } from "./ui/textarea";
-import PhoneInput from "react-phone-number-input";
 import { Checkbox } from "./ui/checkbox";
-import { E164Number } from "libphonenumber-js/core";
+import PhoneInput from "react-phone-number-input";
+import 'react-phone-number-input/style.css'
+import { E164Number } from "libphonenumber-js";
 import { Select, SelectContent, SelectTrigger, SelectValue } from "./ui/select";
+import { FormFieldType } from "@/types";
+import ReactDatePicker from "react-datepicker";
 
 interface ICustomFormField {
 	control: Control<any>;
@@ -70,6 +72,7 @@ const RenderField = ({ field, props }: IRenderField) => {
           )}
           <FormControl>
             <Input
+            name={name}
               placeholder={placeholder}
               type={inputType}
               {...field}
@@ -121,7 +124,7 @@ const RenderField = ({ field, props }: IRenderField) => {
     case FormFieldType.DATE_PICKER:
       return (
         <div className="flex rounded-md border border-dark-500 bg-dark-400">
-          {/* <Image
+          <Image
             src="/assets/icons/calendar.svg"
             height={24}
             width={24}
@@ -132,12 +135,12 @@ const RenderField = ({ field, props }: IRenderField) => {
             <ReactDatePicker
               showTimeSelect={showTimeSelect ?? false}
               selected={field.value}
-              onChange={(date: Date) => field.onChange(date)}
+              onChange={(date: Date | null) => field.onChange(date)}
               timeInputLabel="Time:"
               dateFormat={dateFormat ?? "MM/dd/yyyy"}
               wrapperClassName="date-picker"
             />
-          </FormControl> */}
+          </FormControl>
         </div>
       );
     case FormFieldType.SELECT:
