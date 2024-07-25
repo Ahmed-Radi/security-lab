@@ -1,5 +1,10 @@
-export default function Home() {
+import UserSection from "./_components/userSection";
+
+async function Home() {
   return (
-    <div></div>
+    <div>
+      <UserSection />
+    </div>
   );
 }
+export default Home
