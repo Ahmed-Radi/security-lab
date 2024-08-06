@@ -10,37 +10,16 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
-import { Control } from "react-hook-form";
 import { Textarea } from "./ui/textarea";
 import { Checkbox } from "./ui/checkbox";
 import PhoneInput from "react-phone-number-input";
 import 'react-phone-number-input/style.css'
 import { E164Number } from "libphonenumber-js";
 import { Select, SelectContent, SelectTrigger, SelectValue } from "./ui/select";
-import { FormFieldType } from "@/types";
 import ReactDatePicker from "react-datepicker";
+import { FormFieldType, CustomFormFieldProps, RenderFieldProps } from "@/types";
 
-interface ICustomFormField {
-	control: Control<any>;
-	name: string;
-	label?: string;
-	placeholder?: string;
-	iconSrc?: string;
-	iconAlt?: string;
-	disabled?: boolean;
-	dateFormat?: string;
-	showTimeSelect?: boolean;
-	children?: React.ReactNode;
-	renderSkeleton?: (field: any) => React.ReactNode;
-	fieldType: FormFieldType;
-  inputType: string;
-}
-interface IRenderField {
-	field: any;
-	props: ICustomFormField;
-}
-
-const RenderField = ({ field, props }: IRenderField) => {
+const RenderField = ({ field, props }: RenderFieldProps) => {
 	const {
 		control,
 		fieldType,
@@ -165,7 +144,7 @@ const RenderField = ({ field, props }: IRenderField) => {
   }
 };
 
-const CustomFormField = (props: ICustomFormField) => {
+const CustomFormField = (props: CustomFormFieldProps) => {
 	const {
 		control,
 		fieldType,
