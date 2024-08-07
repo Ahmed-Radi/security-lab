@@ -1,5 +1,6 @@
 import { Plus_Jakarta_Sans } from "next/font/google";
 import { cn } from "@/lib/utils";
+import "../globals.css";
 
 const fontSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -7,7 +8,7 @@ const fontSans = Plus_Jakarta_Sans({
   variable: "--font-sans",
 });
 
-export default function layout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

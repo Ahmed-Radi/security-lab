@@ -65,7 +65,7 @@ export async function signout() {
     redirect("/error");
   }
 
-  redirect("/login");
+  redirect("/logout");
 }
 
 export async function signInWithGoogle() {

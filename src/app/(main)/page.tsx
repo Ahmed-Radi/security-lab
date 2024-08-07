@@ -1,6 +1,6 @@
 import Image from "next/image";
-import HomeCard from "./_components/HomeCard";
-import UserSection from "./_components/userSection";
+import HomeCard from "../_components/HomeCard";
+import UserSection from "../_components/userSection";
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 import { testimonials } from "@/constant";
 
