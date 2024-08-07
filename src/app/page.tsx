@@ -1,10 +1,12 @@
 import Image from "next/image";
 import HomeCard from "./_components/HomeCard";
 import UserSection from "./_components/userSection";
+import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
+import { testimonials } from "@/constant";
 
 async function Home() {
   return (
-    <div className="pt-32 bg-white">
+    <div className="pt-32">
       <div className="flex flex-col">
         {/* <UserSection /> */}
         <div className="sm:w-full md:w-1/2 pb-10">
@@ -23,6 +25,14 @@ async function Home() {
               height={1000}
             />
           </div>
+        </div>
+
+        <div className="py-5">
+          <InfiniteMovingCards
+            items={testimonials}
+            direction="left"
+            speed="normal"
+          />
         </div>
       </div>
     </div>
