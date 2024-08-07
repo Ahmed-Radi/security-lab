@@ -17,7 +17,17 @@ import 'react-phone-number-input/style.css'
 import { E164Number } from "libphonenumber-js";
 import { Select, SelectContent, SelectTrigger, SelectValue } from "./ui/select";
 import ReactDatePicker from "react-datepicker";
-import { FormFieldType, CustomFormFieldProps, RenderFieldProps } from "@/types";
+import { CustomFormFieldProps, RenderFieldProps } from "@/types";
+
+export enum FormFieldType {
+  INPUT = "input",
+  CHECKBOX = "checkbox",
+  TEXTAREA = "textarea",
+  PHONE_INPUT = "phone_input",
+  DATE_PICKER = "date_picker",
+  SELECT = "select",
+  SKELETON = "skeleton",
+}
 
 const RenderField = ({ field, props }: RenderFieldProps) => {
 	const {

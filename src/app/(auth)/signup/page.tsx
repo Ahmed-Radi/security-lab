@@ -1,6 +1,6 @@
 "use client"
 
-import CustomFormField from "@/components/customFormField"
+import CustomFormField, { FormFieldType } from "@/components/customFormField"
 import { Button } from "@/components/ui/button"
 import { Form } from "@/components/ui/form"
 import { registerFormSchema } from "@/lib/validation"
@@ -11,7 +11,6 @@ import { CustomAlert } from "@/components/customAlert"
 import { useSearchParams } from "next/navigation"
 import { signup } from "@/lib/auth-actions"
 import Link from "next/link"
-import { FormFieldType } from "@/types"
 import SubmitButton from "@/components/submitButton"
 import { useState } from "react"
 
