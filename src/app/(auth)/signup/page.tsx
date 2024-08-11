@@ -12,10 +12,11 @@ import { useSearchParams } from "next/navigation"
 import { signup } from "@/lib/auth-actions"
 import Link from "next/link"
 import SubmitButton from "@/components/submitButton"
-import { useTransition } from "react"
+import { Suspense, useTransition } from "react"
+import Loading from "@/app/loading"
 
 const SignUp = () => {
-  const [ pending, startTransition ] = useTransition();
+  const [pending, startTransition] = useTransition();
 
   const searchParams = useSearchParams();
   const message = searchParams.get('message');
@@ -47,49 +48,51 @@ const SignUp = () => {
   }
 
   return (
-    <div className='h-screen flex flex-col items-center justify-center'>
-      <section className="mb-6 w-[300px] md:w-[450px]">
-        <h1 className='text-4xl font-bold text-center mb-6'>Sign Up</h1>
-        {message && <CustomAlert
-          title="Error"
-          message={message ?? ""}
-        />}
-      </section>
-      <Form {...form}>
-        <form className="space-y-8 w-[300px] md:w-[450px]" onSubmit={form.handleSubmit(onSubmit)}>
-          <CustomFormField
-            control={form.control}
-            name="name"
-            label="Full name"
-            fieldType={FormFieldType.INPUT}
-            placeholder="Full name"
-            inputType="text"
-          />
-          <CustomFormField
-            control={form.control}
-            name="email"
-            label="Email"
-            fieldType={FormFieldType.INPUT}
-            placeholder="Email"
-            inputType="email"
-          />
-          <CustomFormField
-            control={form.control}
-            name="password"
-            label="Password"
-            fieldType={FormFieldType.INPUT}
-            placeholder="******"
-            inputType="password"
-          />
-          <div className="flex justify-between">
-            <SubmitButton isLoading={pending}>Submit</SubmitButton>
-            <Button variant={"ghost"} asChild>
-              <Link href="/login">Login</Link>
-            </Button>
-          </div>
-        </form>
-      </Form>
-    </div>
+    <Suspense fallback={<Loading />}>
+      <div className='h-screen flex flex-col items-center justify-center'>
+        <section className="mb-6 w-[300px] md:w-[450px]">
+          <h1 className='text-4xl font-bold text-center mb-6'>Sign Up</h1>
+          {message && <CustomAlert
+            title="Error"
+            message={message ?? ""}
+          />}
+        </section>
+        <Form {...form}>
+          <form className="space-y-8 w-[300px] md:w-[450px]" onSubmit={form.handleSubmit(onSubmit)}>
+            <CustomFormField
+              control={form.control}
+              name="name"
+              label="Full name"
+              fieldType={FormFieldType.INPUT}
+              placeholder="Full name"
+              inputType="text"
+            />
+            <CustomFormField
+              control={form.control}
+              name="email"
+              label="Email"
+              fieldType={FormFieldType.INPUT}
+              placeholder="Email"
+              inputType="email"
+            />
+            <CustomFormField
+              control={form.control}
+              name="password"
+              label="Password"
+              fieldType={FormFieldType.INPUT}
+              placeholder="******"
+              inputType="password"
+            />
+            <div className="flex justify-between">
+              <SubmitButton isLoading={pending}>Submit</SubmitButton>
+              <Button variant={"ghost"} asChild>
+                <Link href="/login">Login</Link>
+              </Button>
+            </div>
+          </form>
+        </Form>
+      </div>
+    </Suspense>
   )
 }
 
