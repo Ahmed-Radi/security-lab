@@ -1,67 +1,68 @@
+import { FormFieldType } from "@/components/customFormField";
 import { Control } from "react-hook-form";
 
 declare type Profile = {
-  id: string;
-  name: string;
-  created_at: string;
+	id: string;
+	name: string;
+	created_at: string;
 };
 
 declare type CustomFormFieldProps = {
-  control: Control<any>;
-  name: string;
-  label?: string;
-  placeholder?: string;
-  iconSrc?: string;
-  iconAlt?: string;
-  disabled?: boolean;
-  dateFormat?: string;
-  showTimeSelect?: boolean;
-  children?: React.ReactNode;
-  renderSkeleton?: (field: any) => React.ReactNode;
-  fieldType: FormFieldType;
-  inputType: string;
+	control: Control<any>;
+	name: string;
+	label?: string;
+	placeholder?: string;
+	iconSrc?: string;
+	iconAlt?: string;
+	disabled?: boolean;
+	dateFormat?: string;
+	showTimeSelect?: boolean;
+	children?: React.ReactNode;
+	renderSkeleton?: (field: any) => React.ReactNode;
+	fieldType: FormFieldType;
+	inputType: string;
 };
 
 declare type RenderFieldProps = {
-  field: any;
-  props: ICustomFormField;
+	field: any;
+	props: ICustomFormField;
 };
 
 /**Navbar */
 declare type NavbarLink = {
-  name: string;
-  href: string
-}
+	name: string;
+	href: string;
+};
 declare type NavbarLinks = {
-  name: string;
-  href: string;
-  subLinks?: NavbarLink[];
+	name: string;
+	href: string;
+	subLinks?: NavbarLink[];
 };
-type NavbarListProps = {
-  links: NavbarLinks[];
-  sidebar?: boolean;
+declare type NavbarListProps = {
+	links: NavbarLinks[];
+	sidebar?: boolean;
 };
-type NavbarListItemProps = {
-  name: string;
-  href: string;
-  subLinks?: NavbarLink[] | undefined;
-}
+declare type NavbarListItemProps = {
+	name: string;
+	href: string;
+	subLinks?: NavbarLink[] | undefined;
+};
 declare type DropdownListProps = {
-  listItems: { href: string; name: string }[];
-  isOpenDropdown: boolean;
-  sidebar?: boolean;
+	listItems: { href: string; name: string }[];
+	isOpenDropdown: boolean;
+	sidebar?: boolean;
 };
 
 /**Home */
 declare type HomeCardSubitem = {
-  subtitle: string;
-  content: string;
-  button: {
-    label: string;
-    link: string;
-  }
+	subtitle: string;
+	content: string;
+	button: {
+		label: string;
+		link: string;
+	};
 };
 declare type HomeCardData = {
-  title: string;
-  data: HomeCardSubitem[]
-}
+	title: string;
+	data: HomeCardSubitem[];
+};

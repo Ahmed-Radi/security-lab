@@ -20,13 +20,13 @@ import ReactDatePicker from "react-datepicker";
 import { CustomFormFieldProps, RenderFieldProps } from "@/types";
 
 export enum FormFieldType {
-  INPUT = "input",
-  CHECKBOX = "checkbox",
-  TEXTAREA = "textarea",
-  PHONE_INPUT = "phone_input",
-  DATE_PICKER = "date_picker",
-  SELECT = "select",
-  SKELETON = "skeleton",
+	INPUT = "input",
+	CHECKBOX = "checkbox",
+	TEXTAREA = "textarea",
+	PHONE_INPUT = "phone_input",
+	DATE_PICKER = "date_picker",
+	SELECT = "select",
+	SKELETON = "skeleton",
 }
 
 const RenderField = ({ field, props }: RenderFieldProps) => {
