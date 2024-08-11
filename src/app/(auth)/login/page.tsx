@@ -1,6 +1,6 @@
 "use client";
 
-import CustomFormField, { FormFieldType } from "@/components/customFormField";
+import CustomFormField, { FormFieldType } from "@/components/customFormField"
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { loginFormSchema } from "@/lib/validation";
@@ -13,13 +13,13 @@ import { login } from "@/lib/auth-actions";
 import Link from "next/link";
 import SubmitButton from "@/components/submitButton";
 import SignInWithGoogleButton from "./components/SignInWithGoogleButton";
-import { useState } from "react";
+import { useTransition } from "react";
 
 const Login = () => {
+  const [ pending, startTransition ] = useTransition();
+
   const searchParams = useSearchParams();
   const message = searchParams.get("message");
-
-  const [isLoading, setIsLoading] = useState(false)
 
   const form = useForm<z.infer<typeof loginFormSchema>>({
     resolver: zodResolver(loginFormSchema),
@@ -31,19 +31,19 @@ const Login = () => {
 
   const onSubmit = async (data: z.infer<typeof loginFormSchema>) => {
     const { email, password } = data;
-    setIsLoading(true)
-    try {
-      const formData = new FormData();
-      formData.append('email', email);
-      formData.append('password', password);
 
-      await login(formData);
-      setIsLoading(false)
-    } catch (error) {
-      setIsLoading(false)
-      console.error("Failed to login:", error);
-      throw new Error(error as string ?? "Failed to login")
-    }
+    startTransition(async() => {
+      try {
+        const formData = new FormData();
+        formData.append('email', email);
+        formData.append('password', password);
+
+        await login(formData);
+      } catch (error) {
+        console.error("Failed to login:", error);
+        throw new Error(error as string ?? "Failed to login")
+      }
+    })
   }
 
   return (
@@ -77,7 +77,7 @@ const Login = () => {
             inputType='password'
           />
           <div className='flex justify-between'>
-            <SubmitButton isLoading={isLoading}>Submit</SubmitButton>
+            <SubmitButton isLoading={pending}>Submit</SubmitButton>
             <Button variant={"ghost"} asChild>
               <Link href='/signup'>Sign Up</Link>
             </Button>

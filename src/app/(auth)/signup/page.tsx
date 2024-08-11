@@ -12,14 +12,13 @@ import { useSearchParams } from "next/navigation"
 import { signup } from "@/lib/auth-actions"
 import Link from "next/link"
 import SubmitButton from "@/components/submitButton"
-import { useState } from "react"
+import { useTransition } from "react"
 
 const SignUp = () => {
+  const [ pending, startTransition ] = useTransition();
 
   const searchParams = useSearchParams();
   const message = searchParams.get('message');
-
-  const [isLoading, setIsLoading] = useState(false)
 
   const form = useForm<z.infer<typeof registerFormSchema>>({
     resolver: zodResolver(registerFormSchema),
@@ -32,19 +31,19 @@ const SignUp = () => {
 
   const onSubmit = async (data: z.infer<typeof registerFormSchema>) => {
     const { name, email, password } = data;
-    setIsLoading(true)
-    try {
-      const formData = new FormData();
-      formData.append('name', name)
-      formData.append('email', email)
-      formData.append('password', password)
 
-      await signup(formData)
-      setIsLoading(false)
-    } catch (error) {
-      setIsLoading(false)
-      throw new Error(error as string ?? "Failed to Signup")
-    }
+    startTransition(async () => {
+      try {
+        const formData = new FormData();
+        formData.append('name', name)
+        formData.append('email', email)
+        formData.append('password', password)
+
+        await signup(formData)
+      } catch (error) {
+        throw new Error(error as string ?? "Failed to Signup")
+      }
+    })
   }
 
   return (
@@ -83,7 +82,7 @@ const SignUp = () => {
             inputType="password"
           />
           <div className="flex justify-between">
-            <SubmitButton isLoading={isLoading}>Submit</SubmitButton>
+            <SubmitButton isLoading={pending}>Submit</SubmitButton>
             <Button variant={"ghost"} asChild>
               <Link href="/login">Login</Link>
             </Button>
