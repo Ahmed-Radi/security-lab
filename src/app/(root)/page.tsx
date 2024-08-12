@@ -9,7 +9,7 @@ async function Home() {
     <div className="pt-32">
       <div className="flex flex-col">
         {/* <UserSection /> */}
-        <div className="sm:w-full md:w-1/2 pb-10">
+        <div className="sm:w-full lg:w-1/2 pb-10">
           <p className="w-full text-3xl font-medium">
             Connecting tech companies with top talented <br /> cybersecurity professionals
           </p>
