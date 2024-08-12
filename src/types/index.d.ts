@@ -52,6 +52,9 @@ declare type DropdownListProps = {
 	isOpenDropdown: boolean;
 	sidebar?: boolean;
 };
+declare type MobileNavbarProps = {
+	links: NavbarLinks[];
+}
 
 /**Home */
 declare type HomeCardSubitem = {
